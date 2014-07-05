@@ -340,16 +340,16 @@ Configure_Log_Insight_script
 	Write-Host "[INFO] Powering on $($vmname)"
 	Start-VM -vm $vmname -RunAsync
 
-Write-Host "[INFO] Sleeping 3 minutes to ensure complete load"
+Write-Host "[INFO] Sleeping 10 minutes to ensure complete load"
 $i = 0
-$min = 3
+$min = 10
 do {
 	Write-Host "$min minutes left"
 	Start-Sleep -Seconds 60
 	$min = $min - 1
 	$i ++
 }
-until ($i -eq 3)
+until ($i -eq 10)
 
 # Copy script to Log Insight
 Write-Host "[CONFIGURE] Copying LogInsight.sh to LogInsight VM"

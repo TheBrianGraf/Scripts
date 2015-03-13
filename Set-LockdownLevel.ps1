@@ -66,7 +66,7 @@ switch ($PsCmdlet.ParameterSetName) {
 "Strict" {$level = "lockdownStrict"}
 }
 Write-Host "you are changing the lockdown mode on host [$VMHost] to $level" -ForegroundColor Yellow
-if (!($SuppressWarning)) {
+if ((!($SuppressWarning)) -and ($level -ne "lockdownDisabled")) {
 
 $OUTPUT = [System.Windows.Forms.MessageBox]::Show("By changing the Lockdown Mode level you may be locking yourself out of your host. If you understand the risks and would like to continue, click YES. If you wish to Cancel, click NO." , "CAUTION" , 4)
 

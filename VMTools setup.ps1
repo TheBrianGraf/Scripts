@@ -245,7 +245,13 @@ Switch ($Result1) {
     }
 
 }
+$n = $VMhosts.count
+$s = 150 * $n
+$time =  [timespan]::fromseconds($s)
+$showTime = ("{0:hh\:mm\:ss}" -f $time)
 Write-host ""
 Write-Host "*******************
   Script Complete
-*******************" -ForegroundColor Green
+*******************
+You just saved yourself roughly $showTime by automating this task
+" -ForegroundColor Green

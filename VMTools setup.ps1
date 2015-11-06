@@ -75,7 +75,7 @@ for ($i=1;$i -le $folders.count; $i++) {
 # Repeat the following block until a valid choice is made
 do {
     [int]$ans2 = Read-Host 'Enter selection'
-    $selection2 = $menu2.Item($ans)
+    $selection2 = $menu2.Item($ans2)
     if ($selection2 -eq $null) {
         Write-host "[$ans2] was not a valid option. Please try again..." -ForegroundColor Red
     } else {

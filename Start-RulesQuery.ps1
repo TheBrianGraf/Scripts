@@ -1,7 +1,4 @@
-﻿Connect-viserver 10.144.99.30 -user administrator@vsphere.local -Password VMw@re123
-
-
-# Data exported to a CSV:
+﻿# Data exported to a CSV:
 # * Cluster Name (only used as a unique value for the objects)
 # * Cluster Size (used to understand potential complexity of the DRS Rules)
 # * Total number of DRS Rules (Just a count, no other info)

@@ -1,5 +1,5 @@
 ﻿# Data exported to a CSV:
-# * Cluster Name (only used as a unique value for the objects)
+# * Cluster (given a number to not give true cluster name)
 # * Cluster Size (used to understand potential complexity of the DRS Rules)
 # * Total number of DRS Rules (Just a count, no other info)
 # * Total number of VMs included in the rules (Just a count, no other info)
@@ -17,6 +17,7 @@ function start-rulesQuery {
 $clusters = @()
 
 # For each cluster, run the following
+$i = 1
 foreach ($cls in (get-cluster)) {
 
 # Variable for the DRS Rules
@@ -31,9 +32,9 @@ $numVMs = $rules.vm.count
 # Calculate the averate nume of VMs per DRS rule
 $AVGVMsPerRule = ($numVMs / $numRules)
 
-# Organize the output (cluster name is only used as a unique value for the objects)
+# Organize the output
 $reporthash = [ordered]@{
-CLSName = $cls.Name
+CLSName = "Cluster$i"
 Clustersize = $cls.ExtensionData.host.count
 NumRules = $numRules
 NumVMs = $numVMs
@@ -45,6 +46,8 @@ $clsobject = New-object -typename psobject -Property $reporthash
 
 # Add the object to the array first specified
 $clusters += $clsobject
+
+$i++
 }
 
 # Returns the data

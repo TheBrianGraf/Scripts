@@ -30,7 +30,10 @@ $numRules = $rules.count
 $numVMs = $rules.vm.count
 
 # Calculate the averate nume of VMs per DRS rule
+if ($numVMs -gt 0 -and $numRules -gt 0) {
 $AVGVMsPerRule = ($numVMs / $numRules)
+}
+else {$AVGVMsPerRule = 0}
 
 # Organize the output
 $reporthash = [ordered]@{

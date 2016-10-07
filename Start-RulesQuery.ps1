@@ -60,6 +60,7 @@ return $clusters
 # Runs the above function and exports to a CSV, Path needs to be specified
 Start-rulesQuery | export-csv -Path "" -NoTypeInformation
 
+Write-Host "Please email results to grafb@vmware.com" -ForegroundColor Cyan 
 # Please email results to grafb@vmware.com
 # Thank you for your help
 

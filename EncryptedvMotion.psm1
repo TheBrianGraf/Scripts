@@ -35,7 +35,7 @@ function Get-vMotionEncryptionConfig {
 	)
 begin{}
 process{
-    Get-VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}}
+    $VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}}
 }
 end{}
 

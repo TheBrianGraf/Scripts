@@ -11,7 +11,7 @@
 
 	.SYNOPSIS
 		This function will allow you to create a full or partial backup of your
-    VCSA appliance. (vSphere 6.5 and higher)
+    VCSA appliance.
 	
 	.DESCRIPTION
 		Use this function to backup your VCSA to a remote location
@@ -27,7 +27,6 @@
 
 	
 	.NOTES
-        Credit goes to @AlanRenouf for sharing the base of this function with me which I was able to take and make more robust as well as add in progress indicators
         You must be connected to the CisService for this to work, if you are not connected, the function will prompt you for your credentials
 		If a -LocationType is not chosen, the function will default to FTP.
         The destination location for a backup must be an empty folder (easiest to use the get-date cmdlet in the location)
@@ -105,7 +104,7 @@ Function Get-VCSABackupJobs {
 	===========================================================================
 
 	.SYNOPSIS
-		Get-VCSABackupJobs returns a list of all backup jobs VCSA has ever performed (vSphere 6.5 and higher)
+		Get-VCSABackupJobs returns a list of all backup jobs VCSA has ever performed
 	
 	.DESCRIPTION
 		Get-VCSABackupJobs returns a list of all backup jobs VCSA has ever performed
@@ -163,7 +162,7 @@ Function Get-VCSABackupStatus {
 	===========================================================================
 
 	.SYNOPSIS
-		Returns the ID, Progress, and State of a VCSA backup (vSphere 6.5 and higher)
+		Returns the ID, Progress, and State of a VCSA backup
 	
 	.DESCRIPTION
 		Returns the ID, Progress, and State of a VCSA backup

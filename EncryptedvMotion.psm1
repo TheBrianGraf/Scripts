@@ -79,6 +79,7 @@ function Set-vMotionEncryptionConfig {
 			   Mandatory = $true,
 			   ValueFromPipeline = $true)]
 	[VMware.VimAutomation.ViCore.Impl.V1.VIObjectImpl[]]$VM,
+	[Parameter(Mandatory=$true)]
 	[ValidateSet("disabled", "opportunistic", "required")]
 	[String]$Encryption
 	

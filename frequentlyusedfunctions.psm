@@ -340,7 +340,7 @@ function Save-InternetFile {
             If you need to grab a file from the web, this is an easy way to grab and save the file
 
         .EXAMPLE
-            PS C:\> Export-PsHistory -File Invoke-WebRequest -Uri "http://www.google.com" -OutFile "C:\path\file.html"
+            PS C:\> Save-InternetFile -URI "http://ipv4.download.thinkbroadband.com/512MB.zip" -SaveLocation "c:\temp\512mb.zip" -OpenFile
     #>
     param (
         [Parameter(Mandatory=$false)][string]$URI,
@@ -354,12 +354,19 @@ function Save-InternetFile {
 
         if (!($SaveLocation)){$SaveLocation = ([Environment]::GetFolderPath("MyDocuments")) + "\Downloads"}
 
+        # This next line will 10x the performance of Invoke-WebRequest
+        $ProgressPreference = 'SilentlyContinue'
+
+        # Make the call to download the file
         Invoke-WebRequest -Uri "$URI" -OutFile "$SaveLocation"
 
     }
 
     process {
+
+        # Check to see if the download was successful
         $testlocation = Test-Path -Path $SaveLocation
+
         if ($testlocation -eq $true){
             Write-Host "Download Successful" -ForegroundColor Green 
         } else {
@@ -368,6 +375,8 @@ function Save-InternetFile {
     }
 
     end {
+
+        # if the 'OpenFile' switch is used, open the file when it completes
         if ($invokeItem) { 
             invoke-item $file
         }

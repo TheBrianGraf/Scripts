@@ -35,7 +35,7 @@ function Get-vMotionEncryptionConfig {
 	)
 begin{}
 process{
-    $VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}}
+    $VM | Select-Object Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}}
 }
 end{}
 
@@ -79,6 +79,7 @@ function Set-vMotionEncryptionConfig {
 			   Mandatory = $true,
 			   ValueFromPipeline = $true)]
 	[VMware.VimAutomation.ViCore.Impl.V1.VIObjectImpl[]]$VM,
+	[Parameter(Mandatory=$true)]
 	[ValidateSet("disabled", "opportunistic", "required")]
 	[String]$Encryption
 	
@@ -98,7 +99,7 @@ process{
     }
 }
 end{ 
-$VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}} }
+$VM | Select-Object Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}} }
 
 }
 

@@ -87,19 +87,23 @@ begin{
     write-host "Working... Please be patient." -ForegroundColor Cyan
 }
 process{
+    $config = new-object VMware.Vim.VirtualMachineConfigSpec
+    $config.MigrateEncryption = New-object VMware.Vim.VirtualMachineConfigSpecEncryptedVMotionModes
+    $config.MigrateEncryption = "$encryption"
+
+    $vmCount = $VM.count
+    $i = 0
+
     foreach ($obj in $VM) 
     {
+        Write-Progress -Activity "Configuring VM(s)..." -PercentComplete (($i++ / $vmCount) * 100) -CurrentOperation "VM : $obj configuring." -Status "Configuring VM $i of $VMCount."
+
         $VMView = $obj | get-view
-        $config = new-object VMware.Vim.VirtualMachineConfigSpec
-        $config.MigrateEncryption = New-object VMware.Vim.VirtualMachineConfigSpecEncryptedVMotionModes
-        $config.MigrateEncryption = "$encryption"
-    
         $VMView.ReconfigVM($config)
     }
 }
-end{ 
-$VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}} }
-
+end{
+    $VM | select Name, @{name="vMotionEncryption";Expression={$_.extensiondata.config.MigrateEncryption}} }
 }
 
 
